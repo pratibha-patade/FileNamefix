@@ -283,7 +283,10 @@ final class ArcanistBundle extends Phobject {
       if ($cur_path !== '/dev/null' && $old_path !== '/dev/null') {
         $old_path = $cur_path;
       }
-
+      //arc patch not working for filename with space, need to terminate with tab 
+      $old_path = $this->encodeGitTargetPath($old_path);
+      $cur_path = $this->encodeGitTargetPath($cur_path);
+      
       $result[] = '--- '.$old_path.$eol;
       $result[] = '+++ '.$cur_path.$eol;
 
